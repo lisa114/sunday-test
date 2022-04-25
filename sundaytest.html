@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            height: 280px;
+            width: 250px;
+            border: 3px solid grey;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 50px;
+        }
+        #image{
+            margin-top:0px;
+            border-radius: 70%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <br>
+        <img  id='image' src="https://reqres.in/img/faces/12-image.jpg">
+        <h3 class='name' id="name">my name</h3>
+        <h3 id="email">email</h3>
+            <div class="btn1">
+            <button class="btn" id="prev"> < </button>
+            <button class="btn" id="next">></button>
+            </div>
+</div>
+<script>
+    const users= [
+      {
+        "id": 7,
+        "email": "michael.lawson@reqres.in",
+        "first_name": "Michael",
+        "last_name": "Lawson",
+        "avatar": "https://reqres.in/img/faces/7-image.jpg"
+      },
+      {
+        "id": 8,
+        "email": "lindsay.ferguson@reqres.in",
+        "first_name": "Lindsay",
+        "last_name": "Ferguson",
+        "avatar": "https://reqres.in/img/faces/8-image.jpg"
+      },
+      {
+        "id": 9,
+        "email": "tobias.funke@reqres.in",
+        "first_name": "Tobias",
+        "last_name": "Funke",
+        "avatar": "https://reqres.in/img/faces/9-image.jpg"
+      },
+      {
+        "id": 10,
+        "email": "byron.fields@reqres.in",
+        "first_name": "Byron",
+        "last_name": "Fields",
+        "avatar": "https://reqres.in/img/faces/10-image.jpg"
+      },
+      {
+        "id": 11,
+        "email": "george.edwards@reqres.in",
+        "first_name": "George",
+        "last_name": "Edwards",
+        "avatar": "https://reqres.in/img/faces/11-image.jpg"
+      },
+      {
+        "id": 12,
+        "email": "rachel.howell@reqres.in",
+        "first_name": "Rachel",
+        "last_name": "Howell",
+        "avatar": "https://reqres.in/img/faces/12-image.jpg"
+      }
+    ]
+    let indexdisplayed=1
+    const reviews=users[indexdisplayed]
+    const nameElement=document.getElementById('name')
+    const emailElement=document.getElementById('email')
+    const imageElement=document.getElementById('image')
+
+    nameElement.innerText = indexdisplayed.first_name + indexdisplayed.last_name
+emailElement.innerText = indexdisplayed.email
+imageElement.src=indexdisplayed.avatar
+
+const nextElement = document.getElementById('next')
+const prevElement = document.getElementById('prev')
+const randomElement = document.getElementById('random')
+
+nextElement.addEventListener('click', displaynext)
+prevElement.addEventListener('click', displayprev)
+
+
+function displaynext() {
+  if (indexdisplayed === users.length - 1) {
+    indexdisplayed = 0
+  } else {
+   // for(let i=0;i<=reviews.length;i++){
+      indexdisplayed++
+   // } 
+  }
+  console.log(indexdisplayed)
+  updatescreen(users[indexdisplayed])
+}
+
+function displayprev() {
+  console.log('prev')
+  if (indexdisplayed === 0) {
+    indexdisplayed = users.length - 1
+  } else {
+    indexdisplayed--
+  }
+  console.log(indexdisplayed)
+
+  updatescreen(users[indexdisplayed])
+}
+
+
+
+function updatescreen(currentElement2) {
+  nameElement.innerText = currentElement2.first_name +currentElement2.last_name
+  emailElement.innerText = currentElement2.email
+  imageElement.src=currentElement2.avatar
+} 
+updatescreen(reviews) 
+
+
+</script>
+</body>
+</html>
